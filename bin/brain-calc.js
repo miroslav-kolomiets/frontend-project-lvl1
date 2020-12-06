@@ -21,11 +21,11 @@ const locale = {
     text2: 'Hello, ',
     text3: '!',
   },
-  rules: 'Answer "yes" if the number is even, otherwise answer "no".',
+  rules: 'What is the result of the expression?',
   answer: {
     correct: 'Correct!',
     wrong: {
-      text1: '\'yes\' is wrong answer ;(. Correct answer was \'no\'',
+      text1: ' is wrong answer ;(. Correct answer was ',
       text2: 'Let\'s try again, ',
     },
     finish: {
@@ -35,21 +35,21 @@ const locale = {
   },
 };
 
-const isNumberOddOrEven = (number) => {
-  if (number % 2 === 0) {
-    return 'yes';
-  }
-  return 'no';
-};
-
 const getGameQuestions = (count) => {
   const questions = [];
+  const mathematicalSymbols = ['+', '-', '*'];
+
   for (let i = 0; i < count; i += 1) {
     const question = [];
-    const randomNumber = getRandomInt(1, 10);
-    const correctAnswer = isNumberOddOrEven(randomNumber);
+    const firstOperand = getRandomInt(1, 10);
+    const secondOperand = getRandomInt(1, 10);
+    const mathematicalSymbol = mathematicalSymbols[getRandomInt(0, 3)];
+    const textQuestion = `${firstOperand}${mathematicalSymbol}${secondOperand}`;
+    /* eslint-disable no-eval */
+    const result = eval(textQuestion);
 
-    question.push(randomNumber, correctAnswer);
+    question.push(textQuestion, result);
+
     questions.push(question);
   }
   return questions;
@@ -61,7 +61,7 @@ const askQuestions = (questions, name) => {
     const correctAnswer = questions[i][1];
 
     console.log(TEXT_COLORS.yellow, `${locale.questions.gameQuestion.text1}${question}`);
-    const answer = readlineSync.question(locale.questions.gameQuestion.text2);
+    const answer = parseInt(readlineSync.question(locale.questions.gameQuestion.text2), 10);
 
     const isAnswerCorrect = checkAnswer(answer, correctAnswer);
 
@@ -78,7 +78,7 @@ const askQuestions = (questions, name) => {
   }
 };
 
-const brainEvenGame = () => {
+const brainCalcGame = () => {
   const gameQuestions = getGameQuestions(QUESTIONS_NUMBER);
   const playerName = getPlayerName(locale);
 
@@ -86,4 +86,4 @@ const brainEvenGame = () => {
   askQuestions(gameQuestions, playerName);
 };
 
-brainEvenGame();
+brainCalcGame();
