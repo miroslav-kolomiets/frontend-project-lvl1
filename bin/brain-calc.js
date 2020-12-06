@@ -1,39 +1,17 @@
 #!/usr/bin/env node
 import readlineSync from 'readline-sync';
+
 import {
   getPlayerName,
   getRandomInt,
   greatPlayer,
   checkAnswer,
+  showRules,
 } from '../src/index.js';
-import { QUESTIONS_NUMBER, TEXT_COLORS } from '../src/constants.js';
 
-const locale = {
-  questions: {
-    name: 'May I have your name? ',
-    gameQuestion: {
-      text1: 'Question: ',
-      text2: 'Your answer: ',
-    },
-  },
-  greetings: {
-    text1: 'Welcome to the Brain Games!',
-    text2: 'Hello, ',
-    text3: '!',
-  },
-  rules: 'What is the result of the expression?',
-  answer: {
-    correct: 'Correct!',
-    wrong: {
-      text1: ' is wrong answer ;(. Correct answer was ',
-      text2: 'Let\'s try again, ',
-    },
-    finish: {
-      text1: 'Congratulations, ',
-      text2: '!',
-    },
-  },
-};
+import {
+  QUESTIONS_NUMBER, TEXT_COLORS, locale, rulesCalcGame,
+} from '../src/constants.js';
 
 const getGameQuestions = (count) => {
   const questions = [];
@@ -83,6 +61,7 @@ const brainCalcGame = () => {
   const playerName = getPlayerName(locale);
 
   greatPlayer(playerName, TEXT_COLORS, locale);
+  showRules(TEXT_COLORS, rulesCalcGame);
   askQuestions(gameQuestions, playerName);
 };
 

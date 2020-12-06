@@ -10,24 +10,28 @@ import {
 } from '../src/index.js';
 
 import {
-  QUESTIONS_NUMBER, TEXT_COLORS, locale, rulesEvenGame,
+  QUESTIONS_NUMBER, TEXT_COLORS, locale, rulesGcdGame,
 } from '../src/constants.js';
 
-const isNumberOddOrEven = (number) => {
-  if (number % 2 === 0) {
-    return 'yes';
+const getGcd = (a, b) => {
+  if (b) {
+    return getGcd(b, a % b);
   }
-  return 'no';
+  return Math.abs(a);
 };
 
 const getGameQuestions = (count) => {
   const questions = [];
+
   for (let i = 0; i < count; i += 1) {
     const question = [];
-    const randomNumber = getRandomInt(1, 10);
-    const correctAnswer = isNumberOddOrEven(randomNumber);
+    const firstOperand = getRandomInt(1, 100);
+    const secondOperand = getRandomInt(1, 100);
 
-    question.push(randomNumber, correctAnswer);
+    const result = getGcd(firstOperand, secondOperand);
+
+    question.push(firstOperand, secondOperand, result);
+
     questions.push(question);
   }
   return questions;
@@ -35,11 +39,11 @@ const getGameQuestions = (count) => {
 
 const askQuestions = (questions, name) => {
   for (let i = 0; i < questions.length; i += 1) {
-    const question = questions[i][0];
-    const correctAnswer = questions[i][1];
+    const question = `${questions[i][0]} ${questions[i][1]}`;
+    const correctAnswer = questions[i][2];
 
     console.log(TEXT_COLORS.yellow, `${locale.questions.gameQuestion.text1}${question}`);
-    const answer = readlineSync.question(locale.questions.gameQuestion.text2);
+    const answer = parseInt(readlineSync.question(locale.questions.gameQuestion.text2), 10);
 
     const isAnswerCorrect = checkAnswer(answer, correctAnswer);
 
@@ -56,13 +60,13 @@ const askQuestions = (questions, name) => {
   }
 };
 
-const brainEvenGame = () => {
+const brainGCDGame = () => {
   const gameQuestions = getGameQuestions(QUESTIONS_NUMBER);
   const playerName = getPlayerName(locale);
 
   greatPlayer(playerName, TEXT_COLORS, locale);
-  showRules(TEXT_COLORS, rulesEvenGame);
+  showRules(TEXT_COLORS, rulesGcdGame);
   askQuestions(gameQuestions, playerName);
 };
 
-brainEvenGame();
+brainGCDGame();
