@@ -1,5 +1,7 @@
 export const QUESTIONS_NUMBER = 3;
 
+export const ARITHMETIC_PROGRESSION_LENGTH = 9;
+
 export const TEXT_COLORS = {
   magenta: '\x1b[35m',
   yellow: '\x1b[33m%s\x1b[0m',
@@ -38,3 +40,5 @@ export const rulesCalcGame = 'What is the result of the expression?';
 export const rulesEvenGame = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 export const rulesGcdGame = 'Find the greatest common divisor of given numbers.';
+
+export const rulesProgressionGame = 'What number is missing in the progression?';
