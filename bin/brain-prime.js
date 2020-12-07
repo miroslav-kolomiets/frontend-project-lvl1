@@ -14,11 +14,12 @@ import {
 } from '../src/constants.js';
 
 const isPrime = (num) => {
-  for(let i = 2; i < num; i++)
-    if(num % i === 0) {
+  for (let i = 2; i < num; i += 1) {
+    if (num % i === 0) {
       return 'no';
     }
-    return 'yes';
+  }
+  return 'yes';
 };
 
 const getGameQuestions = (count) => {
@@ -28,9 +29,9 @@ const getGameQuestions = (count) => {
     const question = [];
     const randomInt = getRandomInt(1, 100);
     const correctAnswer = isPrime(randomInt);
-    question.push(randomInt)
-    question.push(correctAnswer)
-    questions.push(question)
+    question.push(randomInt);
+    question.push(correctAnswer);
+    questions.push(question);
   }
   return questions;
 };
