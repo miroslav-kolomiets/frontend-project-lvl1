@@ -1,5 +1,5 @@
 {
-  "name": "@hexlet/code",
+  "name": "hexlet-brain-games-miroslav",
   "version": "1.0.0",
   "description": "![Actions Status](/workflows/hexlet-check/badge.svg)",
   "main": "index.js",
@@ -23,6 +23,10 @@
     "url": "https://github.com/miroslav-kolomiets/frontend-project-lvl1/issues"
   },
   "homepage": "https://github.com/miroslav-kolomiets/frontend-project-lvl1#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "dependencies": {
     "readline-sync": "^1.4.10"
   },
