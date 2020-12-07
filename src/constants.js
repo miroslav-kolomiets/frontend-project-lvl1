@@ -42,3 +42,5 @@ export const rulesEvenGame = 'Answer "yes" if the number is even, otherwise answ
 export const rulesGcdGame = 'Find the greatest common divisor of given numbers.';
 
 export const rulesProgressionGame = 'What number is missing in the progression?';
+
+export const rulesPrimeGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
