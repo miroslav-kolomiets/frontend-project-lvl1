@@ -1,11 +1,9 @@
 #!/usr/bin/env node
-import readlineSync from 'readline-sync';
-
 import {
   getPlayerName,
   getRandomInt,
   greatPlayer,
-  checkAnswer,
+  askQuestions,
   showRules,
 } from '../src/index.js';
 
@@ -28,7 +26,7 @@ const getGameQuestions = (count) => {
 
   for (let i = 0; i < count; i += 1) {
     const question = [];
-    const correctAnswer = [];
+    let correctAnswer = '';
     const start = getRandomInt(1, 10);
     const step = getRandomInt(1, 3);
     const randomEmptyPart = getRandomInt(1, 11);
@@ -39,37 +37,14 @@ const getGameQuestions = (count) => {
         const emptyPart = ' .. ';
         const correct = result[y];
         result[y] = emptyPart;
-        correctAnswer.push(correct);
+        correctAnswer = correct.toString(10);
       }
     }
-    question.push(result);
-    question.push(correctAnswer);
+
+    question.push(result.join(', '), correctAnswer);
     questions.push(question);
   }
   return questions;
-};
-
-const askQuestions = (questions, name) => {
-  for (let i = 0; i < questions.length; i += 1) {
-    const question = `${questions[i][0]}`;
-    const correctAnswer = questions[i][1][0];
-
-    console.log(TEXT_COLORS.yellow, `${locale.questions.gameQuestion.text1}${question}`);
-    const answer = parseInt(readlineSync.question(locale.questions.gameQuestion.text2), 10);
-
-    const isAnswerCorrect = checkAnswer(answer, correctAnswer);
-
-    if (!isAnswerCorrect) {
-      console.log(TEXT_COLORS.red, `'${answer}'${locale.answer.wrong.text1}'${correctAnswer}'`);
-      console.log(`${locale.answer.wrong.text2}${name}`);
-      break;
-    } else {
-      console.log(TEXT_COLORS.magenta, locale.answer.correct);
-    }
-    if (i === questions.length - 1) {
-      console.log(TEXT_COLORS.magenta, `${locale.answer.finish.text1}${name}${locale.answer.finish.text2}`);
-    }
-  }
 };
 
 const brainProgressionGame = () => {
@@ -78,7 +53,7 @@ const brainProgressionGame = () => {
 
   greatPlayer(playerName, TEXT_COLORS, locale);
   showRules(TEXT_COLORS, rulesProgressionGame);
-  askQuestions(gameQuestions, playerName);
+  askQuestions(TEXT_COLORS, locale, gameQuestions, playerName);
 };
 
 brainProgressionGame();
