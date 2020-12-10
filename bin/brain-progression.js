@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 import {
   getPlayerName,
-  getRandomInt,
+  getRandomNumber,
   greatPlayer,
   askQuestions,
   showRules,
 } from '../src/index.js';
 
 import {
-  QUESTIONS_NUMBER, TEXT_COLORS, locale, rulesProgressionGame, ARITHMETIC_PROGRESSION_LENGTH,
+  QUESTIONS_NUMBER, TEXT_COLORS, LOCALE, RULES_PROGRESSION_GAME, ARITHMETIC_PROGRESSION_LENGTH,
 } from '../src/constants.js';
 
 const getArithmeticProgression = (start, step, length) => {
@@ -27,9 +27,9 @@ const getGameQuestions = (count) => {
   for (let i = 0; i < count; i += 1) {
     const question = [];
     let correctAnswer = '';
-    const start = getRandomInt(1, 10);
-    const step = getRandomInt(1, 3);
-    const randomEmptyPart = getRandomInt(1, 11);
+    const start = getRandomNumber(1, 10);
+    const step = getRandomNumber(1, 3);
+    const randomEmptyPart = getRandomNumber(1, 11);
 
     const result = getArithmeticProgression(start, step, ARITHMETIC_PROGRESSION_LENGTH);
     for (let y = 0; y < result.length; y += 1) {
@@ -49,11 +49,11 @@ const getGameQuestions = (count) => {
 
 const brainProgressionGame = () => {
   const gameQuestions = getGameQuestions(QUESTIONS_NUMBER);
-  const playerName = getPlayerName(locale);
+  const playerName = getPlayerName(LOCALE);
 
-  greatPlayer(playerName, TEXT_COLORS, locale);
-  showRules(TEXT_COLORS, rulesProgressionGame);
-  askQuestions(TEXT_COLORS, locale, gameQuestions, playerName);
+  greatPlayer(playerName, TEXT_COLORS, LOCALE);
+  showRules(TEXT_COLORS, RULES_PROGRESSION_GAME);
+  askQuestions(TEXT_COLORS, LOCALE, gameQuestions, playerName);
 };
 
 brainProgressionGame();

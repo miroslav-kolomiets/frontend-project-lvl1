@@ -9,7 +9,7 @@ export const TEXT_COLORS = {
   red: '\x1b[31m',
 };
 
-export const locale = {
+export const LOCALE = {
   questions: {
     name: 'May I have your name? ',
     gameQuestion: {
@@ -35,12 +35,12 @@ export const locale = {
   },
 };
 
-export const rulesCalcGame = 'What is the result of the expression?';
+export const RULES_CALC_GAME = 'What is the result of the expression?';
 
-export const rulesEvenGame = 'Answer "yes" if the number is even, otherwise answer "no".';
+export const RULES_EVEN_GAME = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-export const rulesGcdGame = 'Find the greatest common divisor of given numbers.';
+export const RULES_GCD_GAME = 'Find the greatest common divisor of given numbers.';
 
-export const rulesProgressionGame = 'What number is missing in the progression?';
+export const RULES_PROGRESSION_GAME = 'What number is missing in the progression?';
 
-export const rulesPrimeGame = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+export const RULES_PRIME_GAME = 'Answer "yes" if given number is prime. Otherwise answer "no".';
