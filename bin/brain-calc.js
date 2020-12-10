@@ -1,30 +1,33 @@
 #!/usr/bin/env node
 import {
   getPlayerName,
-  getRandomInt,
+  getRandomNumber,
   greatPlayer,
   askQuestions,
   showRules,
 } from '../src/index.js';
 
 import {
-  QUESTIONS_NUMBER, TEXT_COLORS, locale, rulesCalcGame,
+  QUESTIONS_NUMBER, TEXT_COLORS, LOCALE, RULES_CALC_GAME,
 } from '../src/constants.js';
 
 const getGameQuestions = (count) => {
   const questions = [];
-  const mathematicalSymbols = ['+', '-', '*'];
 
   for (let i = 0; i < count; i += 1) {
     const question = [];
-    const firstOperand = getRandomInt(1, 10);
-    const secondOperand = getRandomInt(1, 10);
-    const mathematicalSymbol = mathematicalSymbols[getRandomInt(0, 3)];
-    const textQuestion = `${firstOperand}${mathematicalSymbol}${secondOperand}`;
-    /* eslint-disable no-eval */
-    const result = eval(textQuestion);
+    const firstOperand = getRandomNumber(1, 10);
+    const secondOperand = getRandomNumber(1, 10);
+    const mathematicalSymbol = getRandomNumber(0, 3);
 
-    question.push(textQuestion, result);
+    if (mathematicalSymbol === 0) {
+      question.push(`${firstOperand} + ${secondOperand}`, firstOperand + secondOperand);
+    } else if (mathematicalSymbol === 1) {
+      question.push(`${firstOperand} - ${secondOperand}`, firstOperand - secondOperand);
+    } else if (mathematicalSymbol === 2) {
+      question.push(`${firstOperand} * ${secondOperand}`, firstOperand * secondOperand);
+    }
+
     questions.push(question);
   }
   return questions;
@@ -32,11 +35,11 @@ const getGameQuestions = (count) => {
 
 const brainCalcGame = () => {
   const gameQuestions = getGameQuestions(QUESTIONS_NUMBER);
-  const playerName = getPlayerName(locale);
+  const playerName = getPlayerName(LOCALE);
 
-  greatPlayer(playerName, TEXT_COLORS, locale);
-  showRules(TEXT_COLORS, rulesCalcGame);
-  askQuestions(TEXT_COLORS, locale, gameQuestions, playerName);
+  greatPlayer(playerName, TEXT_COLORS, LOCALE);
+  showRules(TEXT_COLORS, RULES_CALC_GAME);
+  askQuestions(TEXT_COLORS, LOCALE, gameQuestions, playerName);
 };
 
 brainCalcGame();

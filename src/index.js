@@ -2,7 +2,7 @@ import readlineSync from 'readline-sync';
 
 export const getPlayerName = (locale) => readlineSync.question(locale.questions.name);
 
-export const getRandomInt = (min, max) => {
+export const getRandomNumber = (min, max) => {
   const minimum = Math.ceil(min);
   const maximum = Math.floor(max);
   return Math.floor(Math.random() * (maximum - minimum)) + minimum;
@@ -45,4 +45,18 @@ export const askQuestions = (TEXT_COLORS, locale, questions, name) => {
       console.log(TEXT_COLORS.magenta, `${locale.answer.finish.text1}${name}${locale.answer.finish.text2}`);
     }
   }
+};
+
+export const getGameQuestions = (count, gameFunction, rangeMin, rangeMax) => {
+  const questions = [];
+
+  for (let i = 0; i < count; i += 1) {
+    const question = [];
+    const randomNumber = getRandomNumber(rangeMin, rangeMax);
+    const correctAnswer = gameFunction(randomNumber);
+
+    question.push(randomNumber, correctAnswer);
+    questions.push(question);
+  }
+  return questions;
 };
