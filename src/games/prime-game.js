@@ -1,5 +1,5 @@
-import { getGameQuestions } from '../../src/index.js';
-import { QUESTIONS_NUMBER } from '../../src/constants.js';
+import { getGameQuestions } from '../index.js';
+import { QUESTIONS_NUMBER } from '../constants.js';
 
 const gameRange = {
   start: 1,
@@ -15,8 +15,6 @@ const isPrime = (num) => {
   return 'yes';
 };
 
-const brainPrimeGame = () => {
-  return getGameQuestions(QUESTIONS_NUMBER, isPrime, gameRange.start, gameRange.end);
-}
+const brainPrimeGame = () => getGameQuestions(QUESTIONS_NUMBER, isPrime, gameRange.start, gameRange.end);
 
 export default brainPrimeGame;

@@ -1,5 +1,5 @@
-import { getGameQuestions } from '../../src/index.js';
-import { QUESTIONS_NUMBER } from '../../src/constants.js';
+import { getGameQuestions } from '../index.js';
+import { QUESTIONS_NUMBER } from '../constants.js';
 
 const gameRange = {
   start: 1,
@@ -13,8 +13,6 @@ const isNumberOddOrEven = (number) => {
   return 'no';
 };
 
-const brainEvenGame = () => {
-  return getGameQuestions(QUESTIONS_NUMBER, isNumberOddOrEven, gameRange.start, gameRange.end);
-}
+const brainEvenGame = () => getGameQuestions(QUESTIONS_NUMBER, isNumberOddOrEven, gameRange.start, gameRange.end);
 
 export default brainEvenGame;

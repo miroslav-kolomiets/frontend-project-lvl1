@@ -1,5 +1,5 @@
-import { getRandomNumber } from '../../src/index.js';
-import { QUESTIONS_NUMBER, ARITHMETIC_PROGRESSION_LENGTH } from '../../src/constants.js';
+import { getRandomNumber } from '../index.js';
+import { QUESTIONS_NUMBER, ARITHMETIC_PROGRESSION_LENGTH } from '../constants.js';
 
 const getArithmeticProgression = (start, step, length) => {
   const arithmeticProgression = [start];
@@ -37,8 +37,6 @@ const getGameQuestions = (count) => {
   return questions;
 };
 
-const brainProgressionGame = () => {
-  return getGameQuestions(QUESTIONS_NUMBER)
-}
+const brainProgressionGame = () => getGameQuestions(QUESTIONS_NUMBER);
 
 export default brainProgressionGame;

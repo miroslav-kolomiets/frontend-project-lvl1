@@ -1,4 +1,4 @@
-import { getRandomNumber } from '../../src/index.js';
+import { getRandomNumber } from '../index.js';
 
 const getGameQuestions = (count) => {
   const questions = [];

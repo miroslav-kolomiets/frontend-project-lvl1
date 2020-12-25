@@ -1,5 +1,5 @@
 import readlineSync from 'readline-sync';
-import { LOCALE, TEXT_COLORS } from "./constants.js";
+import { LOCALE, TEXT_COLORS } from './constants.js';
 
 export const askPlayerName = (locale) => readlineSync.question(locale.questions.name);
 
