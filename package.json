@@ -1,8 +1,7 @@
 {
   "name": "hexlet-brain-games-miroslav",
   "version": "0.0.1",
-  "description": "![Actions Status](/workflows/hexlet-check/badge.svg)",
-  "main": "index.js",
+  "description": "Hexlet brain games, first project.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +11,6 @@
   },
   "type": "module",
   "bin": {
-    "brain-games": "bin/brain-games.js",
     "brain-even": "bin/brain-even.js",
     "brain-calc": "bin/brain-calc.js",
     "brain-gcd": "bin/brain-gcd.js",
@@ -30,11 +28,11 @@
     "registry": "https://registry.npmjs.org"
   },
   "dependencies": {
-    "readline-sync": "^1.4.10"
+    "readline-sync": "1.4.10"
   },
   "devDependencies": {
-    "eslint": "^7.2.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "2.22.1"
   }
 }

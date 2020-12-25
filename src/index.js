@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
+import { LOCALE, TEXT_COLORS } from './constants.js';
 
-export const getPlayerName = (locale) => readlineSync.question(locale.questions.name);
+export const askPlayerName = (locale) => readlineSync.question(locale.questions.name);
 
 export const getRandomNumber = (min, max) => {
   const minimum = Math.ceil(min);
@@ -8,12 +9,12 @@ export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (maximum - minimum)) + minimum;
 };
 
-export const greatPlayer = (playerName, TEXT_COLORS, locale) => {
+export const greetPlayer = (playerName, locale) => {
   console.log(TEXT_COLORS.yellow, locale.greetings.text1);
   console.log(TEXT_COLORS.cyan, `${locale.greetings.text2}${playerName}${locale.greetings.text3}`);
 };
 
-export const showRules = (TEXT_COLORS, locale) => {
+export const showRules = (locale) => {
   console.log(TEXT_COLORS.cyan, locale);
 };
 
@@ -24,7 +25,7 @@ export const checkAnswer = (answer, correctAnswer) => {
   return parseInt(answer, 10) === correctAnswer;
 };
 
-export const askQuestions = (TEXT_COLORS, locale, questions, name) => {
+export const askQuestions = (locale, questions, name) => {
   for (let i = 0; i < questions.length; i += 1) {
     const question = questions[i][0];
     const correctAnswer = questions[i][1];
@@ -59,4 +60,12 @@ export const getGameQuestions = (count, gameFunction, rangeMin, rangeMax) => {
     questions.push(question);
   }
   return questions;
+};
+
+export const startGame = (questions, rules) => {
+  const playerName = askPlayerName(LOCALE);
+
+  greetPlayer(playerName, TEXT_COLORS, LOCALE);
+  showRules(TEXT_COLORS, rules);
+  askQuestions(TEXT_COLORS, LOCALE, questions, playerName);
 };
