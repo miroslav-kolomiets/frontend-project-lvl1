@@ -15,6 +15,8 @@ const isPrime = (num) => {
   return 'yes';
 };
 
-const brainPrimeGame = () => getGameQuestions(QUESTIONS_NUMBER, isPrime, gameRange.start, gameRange.end);
+const brainPrimeGame = () => {
+  return getGameQuestions(QUESTIONS_NUMBER, isPrime, gameRange.start, gameRange.end);
+};
 
 export default brainPrimeGame;

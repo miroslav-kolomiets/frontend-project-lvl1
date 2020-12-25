@@ -13,6 +13,8 @@ const isNumberOddOrEven = (number) => {
   return 'no';
 };
 
-const brainEvenGame = () => getGameQuestions(QUESTIONS_NUMBER, isNumberOddOrEven, gameRange.start, gameRange.end);
+const brainEvenGame = () => {
+  return getGameQuestions(QUESTIONS_NUMBER, isNumberOddOrEven, gameRange.start, gameRange.end);
+};
 
 export default brainEvenGame;
