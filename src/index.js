@@ -9,12 +9,12 @@ export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (maximum - minimum)) + minimum;
 };
 
-export const greetPlayer = (playerName, TEXT_COLORS, locale) => {
+export const greetPlayer = (playerName, locale) => {
   console.log(TEXT_COLORS.yellow, locale.greetings.text1);
   console.log(TEXT_COLORS.cyan, `${locale.greetings.text2}${playerName}${locale.greetings.text3}`);
 };
 
-export const showRules = (TEXT_COLORS, locale) => {
+export const showRules = (locale) => {
   console.log(TEXT_COLORS.cyan, locale);
 };
 
@@ -25,7 +25,7 @@ export const checkAnswer = (answer, correctAnswer) => {
   return parseInt(answer, 10) === correctAnswer;
 };
 
-export const askQuestions = (TEXT_COLORS, locale, questions, name) => {
+export const askQuestions = (locale, questions, name) => {
   for (let i = 0; i < questions.length; i += 1) {
     const question = questions[i][0];
     const correctAnswer = questions[i][1];
