@@ -1,20 +1,21 @@
-import { getRandomNumber } from '../index.js';
-import { QUESTIONS_NUMBER, ARITHMETIC_PROGRESSION_LENGTH } from '../constants.js';
+import { startGame, getRandomNumber } from '../index.js';
+
+const PROGRESSION_GAME_RULES = 'What number is missing in the progression?';
+const ARITHMETIC_PROGRESSION_LENGTH = 9;
+const QUESTIONS_NUMBER = 3;
 
 const getArithmeticProgression = (start, step, length) => {
   const arithmeticProgression = [start];
-  if (typeof start === 'number' && typeof step === 'number' && typeof length === 'number') {
-    for (let i = 0; i < length; i += 1) {
-      arithmeticProgression.push(arithmeticProgression[i] + step);
-    }
+  for (let i = 0; i < length; i += 1) {
+    arithmeticProgression.push(arithmeticProgression[i] + step);
   }
   return arithmeticProgression;
 };
 
-const getGameQuestions = (count) => {
+const getGameQuestionsAndAnswers = () => {
   const questions = [];
 
-  for (let i = 0; i < count; i += 1) {
+  for (let i = 0; i < QUESTIONS_NUMBER; i += 1) {
     const question = [];
     let correctAnswer = '';
     const start = getRandomNumber(1, 10);
@@ -34,9 +35,12 @@ const getGameQuestions = (count) => {
     question.push(result.join(', '), correctAnswer);
     questions.push(question);
   }
+
   return questions;
 };
 
-const brainProgressionGame = () => getGameQuestions(QUESTIONS_NUMBER);
+const gameQuestionsAndAnswers = getGameQuestionsAndAnswers();
+
+const brainProgressionGame = () => startGame(gameQuestionsAndAnswers, PROGRESSION_GAME_RULES);
 
 export default brainProgressionGame;
