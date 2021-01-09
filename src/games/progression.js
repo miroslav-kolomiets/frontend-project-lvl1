@@ -32,7 +32,7 @@ const getGameQuestionsAndAnswers = () => {
       }
     }
 
-    question.push(result.join(', '), correctAnswer);
+    question.push(result.join(' '), correctAnswer);
     questions.push(question);
   }
 
