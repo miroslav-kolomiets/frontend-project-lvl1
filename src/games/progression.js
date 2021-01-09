@@ -25,14 +25,14 @@ const getGameQuestionsAndAnswers = () => {
     const result = getArithmeticProgression(start, step, ARITHMETIC_PROGRESSION_LENGTH);
     for (let y = 0; y < result.length; y += 1) {
       if (y === randomEmptyPart) {
-        const emptyPart = ' .. ';
+        const emptyPart = '..';
         const correct = result[y];
         result[y] = emptyPart;
         correctAnswer = correct.toString(10);
       }
     }
 
-    question.push(result.join(', '), correctAnswer);
+    question.push(result.join(' '), correctAnswer);
     questions.push(question);
   }
 
