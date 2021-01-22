@@ -1,33 +1,38 @@
-import { startGame, getRandomNumber } from '../index.js';
+import { startGame, questionNumber } from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const CALC_GAME_RULES = 'What is the result of the expression?';
-const QUESTIONS_NUMBER = 3;
+const gameRules = 'What is the result of the expression?';
 
-const getGameQuestionsAndAnswers = () => {
-  const questions = [];
+const generateGameRound = () => {
+  const round = [];
+  const firstOperand = getRandomNumber(1, 10);
+  const secondOperand = getRandomNumber(1, 10);
+  const operators = '+-*';
+  const mathematicalOperator = operators[getRandomNumber(0, 3)];
 
-  for (let i = 0; i < QUESTIONS_NUMBER; i += 1) {
-    const question = [];
-    const firstOperand = getRandomNumber(1, 10);
-    const secondOperand = getRandomNumber(1, 10);
-    const mathematicalSymbol = getRandomNumber(0, 3);
-
-    if (mathematicalSymbol === 0) {
-      question.push(`${firstOperand} + ${secondOperand}`, `${firstOperand + secondOperand}`);
-    } else if (mathematicalSymbol === 1) {
-      question.push(`${firstOperand} - ${secondOperand}`, `${firstOperand - secondOperand}`);
-    } else if (mathematicalSymbol === 2) {
-      question.push(`${firstOperand} * ${secondOperand}`, `${firstOperand * secondOperand}`);
-    }
-
-    questions.push(question);
+  if (mathematicalOperator === '+') {
+    round.push(`${firstOperand} + ${secondOperand}`, `${firstOperand + secondOperand}`);
+  } else if (mathematicalOperator === '-') {
+    round.push(`${firstOperand} - ${secondOperand}`, `${firstOperand - secondOperand}`);
+  } else if (mathematicalOperator === '*') {
+    round.push(`${firstOperand} * ${secondOperand}`, `${firstOperand * secondOperand}`);
   }
 
-  return questions;
+  return round;
 };
 
-const gameQuestionsAndAnswers = getGameQuestionsAndAnswers();
+const generateGameRounds = () => {
+  const rounds = [];
 
-const brainCalcGame = () => startGame(gameQuestionsAndAnswers, CALC_GAME_RULES);
+  for (let i = 0; i < questionNumber; i += 1) {
+    rounds.push(generateGameRound());
+  }
+
+  return rounds;
+};
+
+const gameQuestionsAndAnswers = generateGameRounds();
+
+const brainCalcGame = () => startGame(gameQuestionsAndAnswers, gameRules);
 
 export default brainCalcGame;

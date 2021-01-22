@@ -1,8 +1,7 @@
-import { startGame, getRandomNumber } from '../index.js';
+import { startGame, questionNumber } from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const PROGRESSION_GAME_RULES = 'What number is missing in the progression?';
-const ARITHMETIC_PROGRESSION_LENGTH = 9;
-const QUESTIONS_NUMBER = 3;
+const gameRules = 'What number is missing in the progression?';
 
 const getArithmeticProgression = (start, step, length) => {
   const arithmeticProgression = [start];
@@ -12,35 +11,40 @@ const getArithmeticProgression = (start, step, length) => {
   return arithmeticProgression;
 };
 
-const getGameQuestionsAndAnswers = () => {
-  const questions = [];
+const generateGameRound = () => {
+  const round = [];
+  let correctAnswer = '';
+  const start = getRandomNumber(1, 10);
+  const step = getRandomNumber(1, 3);
+  const randomEmptyPart = getRandomNumber(1, 11);
 
-  for (let i = 0; i < QUESTIONS_NUMBER; i += 1) {
-    const question = [];
-    let correctAnswer = '';
-    const start = getRandomNumber(1, 10);
-    const step = getRandomNumber(1, 3);
-    const randomEmptyPart = getRandomNumber(1, 11);
-
-    const result = getArithmeticProgression(start, step, ARITHMETIC_PROGRESSION_LENGTH);
-    for (let y = 0; y < result.length; y += 1) {
-      if (y === randomEmptyPart) {
-        const emptyPart = '..';
-        const correct = result[y];
-        result[y] = emptyPart;
-        correctAnswer = correct.toString(10);
-      }
+  const result = getArithmeticProgression(start, step, 10);
+  for (let y = 0; y < result.length; y += 1) {
+    if (y === randomEmptyPart) {
+      const emptyPart = '..';
+      const correct = result[y];
+      result[y] = emptyPart;
+      correctAnswer = correct.toString(10);
     }
-
-    question.push(result.join(' '), correctAnswer);
-    questions.push(question);
   }
 
-  return questions;
+  round.push(result.join(' '), correctAnswer);
+
+  return round;
 };
 
-const gameQuestionsAndAnswers = getGameQuestionsAndAnswers();
+const generateGameRounds = () => {
+  const rounds = [];
 
-const brainProgressionGame = () => startGame(gameQuestionsAndAnswers, PROGRESSION_GAME_RULES);
+  for (let i = 0; i < questionNumber; i += 1) {
+    rounds.push(generateGameRound());
+  }
+
+  return rounds;
+};
+
+const gameQuestionsAndAnswers = generateGameRounds();
+
+const brainProgressionGame = () => startGame(gameQuestionsAndAnswers, gameRules);
 
 export default brainProgressionGame;

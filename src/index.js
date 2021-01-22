@@ -1,32 +1,22 @@
 import readlineSync from 'readline-sync';
 
-export const getRandomNumber = (min, max) => {
-  const minimum = Math.ceil(min);
-  const maximum = Math.floor(max);
-  return Math.floor(Math.random() * (maximum - minimum)) + minimum;
-};
+export const questionNumber = 3;
 
-export const askQuestions = (questions, name) => {
-  for (let i = 0; i < questions.length; i += 1) {
-    const question = questions[i][0];
-    const correctAnswer = questions[i][1];
-
+const askQuestions = (rounds, name) => {
+  /* eslint-disable-next-line */
+  for (const [question, correctAnswer] of rounds) {
     console.log(`Question: ${question}`);
     const answer = readlineSync.question('Your answer: ');
 
-    const isAnswerCorrect = answer === correctAnswer;
-
-    if (!isAnswerCorrect) {
+    if (answer !== correctAnswer) {
       console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correctAnswer}'`);
       console.log(`Let's try again, ${name}!`);
-      break;
-    } else {
-      console.log('Correct!');
+      return;
     }
-    if (i === questions.length - 1) {
-      console.log(`Congratulations, ${name}!`);
-    }
+    console.log('Correct!');
   }
+
+  console.log(`Congratulations, ${name}!`);
 };
 
 export const startGame = (questions, rules) => {
