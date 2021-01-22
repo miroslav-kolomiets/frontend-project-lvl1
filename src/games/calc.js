@@ -8,7 +8,7 @@ const generateGameRound = () => {
   const firstOperand = getRandomNumber(1, 10);
   const secondOperand = getRandomNumber(1, 10);
   const operators = '+-*';
-  const mathematicalOperator = operators[getRandomNumber(0, 3)];
+  const mathematicalOperator = operators[getRandomNumber(0, 2)];
 
   if (mathematicalOperator === '+') {
     round.push(`${firstOperand} + ${secondOperand}`, `${firstOperand + secondOperand}`);
