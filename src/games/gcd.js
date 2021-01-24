@@ -1,7 +1,7 @@
-import { startGame, getRandomNumber } from '../index.js';
+import { startGame, questionNumber } from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const GCD_GAME_RULES = 'Find the greatest common divisor of given numbers.';
-const QUESTIONS_NUMBER = 3;
+const gameRules = 'Find the greatest common divisor of given numbers.';
 
 const getGcd = (a, b) => {
   if (b) {
@@ -10,24 +10,29 @@ const getGcd = (a, b) => {
   return Math.abs(a);
 };
 
-const getGameQuestionsAndAnswers = () => {
-  const questions = [];
+const generateGameRound = () => {
+  const round = [];
+  const firstRandomNumber = getRandomNumber(1, 100);
+  const secondRandomNumber = getRandomNumber(1, 100);
+  const correctAnswer = `${getGcd(firstRandomNumber, secondRandomNumber)}`;
 
-  for (let i = 0; i < QUESTIONS_NUMBER; i += 1) {
-    const question = [];
-    const firstRandomNumber = getRandomNumber(1, 100);
-    const secondRandomNumber = getRandomNumber(1, 100);
-    const correctAnswer = `${getGcd(firstRandomNumber, secondRandomNumber)}`;
+  round.push(`${firstRandomNumber} ${secondRandomNumber}`, correctAnswer);
 
-    question.push(`${firstRandomNumber} ${secondRandomNumber}`, correctAnswer);
-    questions.push(question);
-  }
-
-  return questions;
+  return round;
 };
 
-const gameQuestionsAndAnswers = getGameQuestionsAndAnswers();
+const generateGameRounds = () => {
+  const rounds = [];
 
-const brainGcdGame = () => startGame(gameQuestionsAndAnswers, GCD_GAME_RULES);
+  for (let i = 0; i < questionNumber; i += 1) {
+    rounds.push(generateGameRound());
+  }
+
+  return rounds;
+};
+
+const gameQuestionsAndAnswers = generateGameRounds();
+
+const brainGcdGame = () => startGame(gameQuestionsAndAnswers, gameRules);
 
 export default brainGcdGame;

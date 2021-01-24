@@ -1,35 +1,37 @@
-import { startGame, getRandomNumber } from '../index.js';
+import { startGame, questionNumber } from '../index.js';
+import getRandomNumber from '../utils.js';
 
-const PRIME_GAME_RULES = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-const QUESTIONS_NUMBER = 3;
-const GAME_START = 1;
-const GAME_END = 100;
+const gameRules = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (num) => {
-  if (num === 1) return false;
+  if (num === 1 || num === 0) return false;
   for (let i = 2; i < num; i += 1) {
     if (num % i === 0) return false;
   }
   return true;
 };
 
-const getGameQuestionsAndAnswers = () => {
-  const questions = [];
+const generateGameRound = () => {
+  const round = [];
+  const randomNumber = getRandomNumber(1, 100);
+  const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
 
-  for (let i = 0; i < QUESTIONS_NUMBER; i += 1) {
-    const question = [];
-    const randomNumber = getRandomNumber(GAME_START, GAME_END);
-    const correctAnswer = isPrime(randomNumber) ? 'yes' : 'no';
-
-    question.push(randomNumber, correctAnswer);
-    questions.push(question);
-  }
-
-  return questions;
+  round.push(randomNumber, correctAnswer);
+  return round;
 };
 
-const gameQuestionsAndAnswers = getGameQuestionsAndAnswers();
+const generateGameRounds = () => {
+  const rounds = [];
 
-const brainPrimeGame = () => startGame(gameQuestionsAndAnswers, PRIME_GAME_RULES);
+  for (let i = 0; i < questionNumber; i += 1) {
+    rounds.push(generateGameRound());
+  }
+
+  return rounds;
+};
+
+const gameQuestionsAndAnswers = generateGameRounds();
+
+const brainPrimeGame = () => startGame(gameQuestionsAndAnswers, gameRules);
 
 export default brainPrimeGame;
