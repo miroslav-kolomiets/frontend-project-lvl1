@@ -1,50 +1,37 @@
-import { startGame, questionNumber } from '../index.js';
+import { startGame, numberOfRounds } from '../index.js';
 import getRandomNumber from '../utils.js';
 
 const gameRules = 'What number is missing in the progression?';
-
-const getArithmeticProgression = (start, step, length) => {
-  const arithmeticProgression = [start];
-  for (let i = 0; i < length; i += 1) {
-    arithmeticProgression.push(arithmeticProgression[i] + step);
-  }
-  return arithmeticProgression;
-};
+const arithmeticProgressionLength = 10;
 
 const generateGameRound = () => {
-  const round = [];
-  let correctAnswer = '';
   const start = getRandomNumber(1, 10);
-  const step = getRandomNumber(1, 3);
-  const randomEmptyPart = getRandomNumber(1, 11);
+  const step = getRandomNumber(2, 4);
+  const randomEmptyPart = getRandomNumber(0, arithmeticProgressionLength);
+  let correctAnswer = '';
 
-  const result = getArithmeticProgression(start, step, 10);
-  for (let y = 0; y < result.length; y += 1) {
-    if (y === randomEmptyPart) {
-      const emptyPart = '..';
-      const correct = result[y];
-      result[y] = emptyPart;
-      correctAnswer = correct.toString(10);
+  const arithmeticProgression = [];
+
+  for (let i = 0; i < arithmeticProgressionLength; i += 1) {
+    if (i === randomEmptyPart) {
+      arithmeticProgression.push('..');
+      correctAnswer = (start + i * step).toString(10);
+    } else {
+      arithmeticProgression.push(start + i * step);
     }
   }
 
-  round.push(result.join(' '), correctAnswer);
-
-  return round;
+  return [arithmeticProgression.join(' '), correctAnswer];
 };
 
 const generateGameRounds = () => {
   const rounds = [];
 
-  for (let i = 0; i < questionNumber; i += 1) {
+  for (let i = 0; i < numberOfRounds; i += 1) {
     rounds.push(generateGameRound());
   }
 
-  return rounds;
+  startGame(rounds, gameRules);
 };
 
-const gameQuestionsAndAnswers = generateGameRounds();
-
-const brainProgressionGame = () => startGame(gameQuestionsAndAnswers, gameRules);
-
-export default brainProgressionGame;
+export default generateGameRounds;

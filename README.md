@@ -1,9 +1,9 @@
 ### Hexlet tests and linter status:
-![Actions Status](/workflows/hexlet-check/badge.svg)
+[![hexlet-check](https://github.com/miroslav-kolomiets/frontend-project-lvl1/workflows/hexlet-check/badge.svg)](https://github.com/miroslav-kolomiets/frontend-project-lvl1/actions?query=workflow%3Ahexlet-check)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability)](https://codeclimate.com/github/codeclimate/codeclimate/maintainability)
 
-![Lint](https://github.com/miroslav-kolomiets/frontend-project-lvl1/workflows/Lint/badge.svg)
+[![Lint](https://github.com/miroslav-kolomiets/frontend-project-lvl1/workflows/Lint/badge.svg)](https://github.com/miroslav-kolomiets/frontend-project-lvl1/actions?query=workflow%3ALint)
 
 ### Brain Even Game:
 
