@@ -5,7 +5,7 @@ const gameRules = 'Answer "yes" if given number is prime. Otherwise answer "no".
 
 const isPrime = (num) => {
   if (!Number.isInteger(num)) {
-    return;
+    return new Error('We usually restrict the terms prime and composite to positive integers.');
   }
 
   if (num === 1 || num === 0) return false;

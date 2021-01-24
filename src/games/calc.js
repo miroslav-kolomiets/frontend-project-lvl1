@@ -20,6 +20,8 @@ const generateGameRound = () => {
     case '*':
       round.push(`${firstOperand} * ${secondOperand}`, `${firstOperand * secondOperand}`);
       break;
+    default:
+      break;
   }
 
   return round;
