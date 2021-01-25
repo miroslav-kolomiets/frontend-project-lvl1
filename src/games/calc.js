@@ -1,4 +1,4 @@
-import { startGame, questionNumber } from '../index.js';
+import { startGame, numberOfRounds } from '../index.js';
 import getRandomNumber from '../utils.js';
 
 const gameRules = 'What is the result of the expression?';
@@ -10,12 +10,18 @@ const generateGameRound = () => {
   const operators = '+-*';
   const mathematicalOperator = operators[getRandomNumber(0, 2)];
 
-  if (mathematicalOperator === '+') {
-    round.push(`${firstOperand} + ${secondOperand}`, `${firstOperand + secondOperand}`);
-  } else if (mathematicalOperator === '-') {
-    round.push(`${firstOperand} - ${secondOperand}`, `${firstOperand - secondOperand}`);
-  } else if (mathematicalOperator === '*') {
-    round.push(`${firstOperand} * ${secondOperand}`, `${firstOperand * secondOperand}`);
+  switch (mathematicalOperator) {
+    case '+':
+      round.push(`${firstOperand} + ${secondOperand}`, `${firstOperand + secondOperand}`);
+      break;
+    case '-':
+      round.push(`${firstOperand} - ${secondOperand}`, `${firstOperand - secondOperand}`);
+      break;
+    case '*':
+      round.push(`${firstOperand} * ${secondOperand}`, `${firstOperand * secondOperand}`);
+      break;
+    default:
+      break;
   }
 
   return round;
@@ -24,15 +30,11 @@ const generateGameRound = () => {
 const generateGameRounds = () => {
   const rounds = [];
 
-  for (let i = 0; i < questionNumber; i += 1) {
+  for (let i = 0; i < numberOfRounds; i += 1) {
     rounds.push(generateGameRound());
   }
 
-  return rounds;
+  startGame(rounds, gameRules);
 };
 
-const gameQuestionsAndAnswers = generateGameRounds();
-
-const brainCalcGame = () => startGame(gameQuestionsAndAnswers, gameRules);
-
-export default brainCalcGame;
+export default generateGameRounds;

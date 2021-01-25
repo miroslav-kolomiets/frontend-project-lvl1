@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 
-export const questionNumber = 3;
+export const numberOfRounds = 3;
 
 const askQuestions = (rounds, name) => {
   /* eslint-disable-next-line */
@@ -19,12 +19,12 @@ const askQuestions = (rounds, name) => {
   console.log(`Congratulations, ${name}!`);
 };
 
-export const startGame = (questions, rules) => {
+export const startGame = (rounds, rules) => {
   const playerName = readlineSync.question('May I have your name? ');
 
   console.log('Welcome to the Brain Games!');
   console.log(`Hello, ${playerName}!`);
   console.log(rules);
 
-  askQuestions(questions, playerName);
+  askQuestions(rounds, playerName);
 };
