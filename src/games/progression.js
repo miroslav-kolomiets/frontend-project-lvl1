@@ -12,10 +12,10 @@ const generateGameRound = () => {
 
   const arithmeticProgression = [];
 
-  for (let i = 0; i < arithmeticProgressionLength; i += 1) {
+  for (let i = 0; i <= arithmeticProgressionLength; i += 1) {
     if (i === randomEmptyPart) {
       arithmeticProgression.push('..');
-      correctAnswer = (start + i * step).toString(10);
+      correctAnswer = (start + i * step).toString();
     } else {
       arithmeticProgression.push(start + i * step);
     }
